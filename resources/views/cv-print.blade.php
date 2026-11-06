@@ -182,7 +182,7 @@
                 <!-- Pengalaman Section -->
                 <div>
                     <h2 class="text-base font-bold text-slate-900 border-b-2 border-slate-900 pb-1 mb-3 uppercase tracking-wider">
-                        Pengalaman Organisasi
+                        Pengalaman
                     </h2>
                     <ul class="space-y-3 text-xs text-slate-700">
                         @foreach ($experiences as $exp)

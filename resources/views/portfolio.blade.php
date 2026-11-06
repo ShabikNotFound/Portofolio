@@ -19,6 +19,34 @@
         .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
         .font-mono-cyber { font-family: 'JetBrains Mono', monospace; }
         .font-body { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Custom Cursor */
+        * { cursor: none !important; }
+        #cyber-cursor-dot {
+            will-change: transform;
+            transition: width 0.15s, height 0.15s, background-color 0.15s;
+        }
+        #cyber-cursor-ring {
+            will-change: transform;
+            transition: width 0.25s ease-out, height 0.25s ease-out, border-color 0.2s, opacity 0.2s;
+        }
+        body.cursor-hover #cyber-cursor-dot {
+            width: 6px; height: 6px;
+            background-color: #fff;
+        }
+        body.cursor-hover #cyber-cursor-ring {
+            width: 44px; height: 44px;
+            border-color: rgba(34,211,238,0.9);
+            box-shadow: 0 0 10px rgba(34,211,238,0.4), 0 0 2px rgba(34,211,238,0.6) inset;
+        }
+        body.cursor-click #cyber-cursor-dot {
+            width: 10px; height: 10px;
+            background-color: #f0abfc;
+        }
+        body.cursor-click #cyber-cursor-ring {
+            width: 20px; height: 20px;
+            border-color: rgba(240,171,252,0.9);
+        }
     </style>
 </head>
 <body class="bg-[#07090e] text-slate-200 font-body selection:bg-cyan-500 selection:text-black min-h-screen relative overflow-x-hidden cyber-grid">
@@ -473,7 +501,7 @@
             <div class="flex items-center gap-3 mb-8">
                 <span class="text-cyan-400 font-mono-cyber text-xl font-bold">// 03</span>
                 <h2 class="text-2xl sm:text-3xl font-black font-orbitron tracking-wide text-white">
-                    PENGALAMAN ORGANISASI <span class="text-cyan-400">[MISSION LOG]</span>
+                    PENGALAMAN <span class="text-cyan-400">[MISSION LOG]</span>
                 </h2>
                 <div class="h-px bg-cyan-500/20 flex-1"></div>
             </div>
@@ -583,103 +611,98 @@
                 @endforeach
             </div>
 
-            <!-- Diagram & Analitika Hasil Studi Semester -->
+            <!-- Tech Stack Section -->
             <div class="mt-10 p-6 sm:p-8 rounded border border-cyan-500/30 bg-[#090d18]/90 cyber-cut relative shadow-xl shadow-cyan-950/40">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pb-4 border-b border-cyan-500/20 mb-6">
+                <div class="flex items-center gap-3 pb-4 border-b border-cyan-500/20 mb-6">
+                    <span class="w-2.5 h-2.5 bg-cyan-400 rounded-sm"></span>
                     <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="w-2.5 h-2.5 bg-cyan-400 rounded-sm"></span>
-                            <span class="text-xs font-mono-cyber text-cyan-400 uppercase tracking-wider">ANALITIKA HASIL STUDI SEMESTER</span>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-bold font-orbitron text-white">
-                            Index Prestasi Tiap Semester
-                        </h3>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="text-right">
-                            <div class="text-[10px] font-mono-cyber text-slate-400 uppercase">IPK Kumulatif</div>
-                            <div class="text-2xl font-black font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-400">
-                                {{ $academic_records['current_gpa'] }} <span class="text-xs text-slate-400 font-normal">/ 4.00</span>
-                            </div>
-                        </div>
+                        <div class="text-xs font-mono-cyber text-cyan-400 uppercase tracking-wider">STACK TEKNOLOGI YANG DIGUNAKAN</div>
+                        <h3 class="text-xl sm:text-2xl font-bold font-orbitron text-white mt-0.5">Tech Stack</h3>
                     </div>
                 </div>
 
-                <!-- Visual Bar Chart Diagram -->
-                <div class="bg-[#050811] p-6 rounded-lg border border-slate-800/80 mb-6 relative">
-                    <!-- Diagram Header & Grid Lines -->
-                    <div class="text-xs font-mono-cyber text-slate-400 flex justify-between items-center mb-6">
-                        <span>DIAGRAM PERTUMBUHAN INDEKS PRESTASI</span>
-                        <span class="text-cyan-400/80">SKALA MAKSIMAL: 4.00</span>
-                    </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                    <!-- Bars Container -->
-                    <div class="h-64 sm:h-72 w-full flex items-end justify-around gap-3 sm:gap-6 pt-8 pb-4 relative border-b border-l border-cyan-500/30">
-                        <!-- Horizontal Grid Guides -->
-                        <div class="absolute inset-x-0 top-0 border-b border-dashed border-cyan-500/20 pointer-events-none flex justify-between px-2">
-                            <span class="text-[10px] font-mono-cyber text-cyan-400/60 -mt-2.5 bg-[#050811] px-1">4.00</span>
-                        </div>
-                        <div class="absolute inset-x-0 top-1/4 border-b border-dashed border-slate-800 pointer-events-none flex justify-between px-2">
-                            <span class="text-[10px] font-mono-cyber text-slate-500 -mt-2.5 bg-[#050811] px-1">3.90</span>
-                        </div>
-                        <div class="absolute inset-x-0 top-2/4 border-b border-dashed border-slate-800 pointer-events-none flex justify-between px-2">
-                            <span class="text-[10px] font-mono-cyber text-slate-500 -mt-2.5 bg-[#050811] px-1">3.80</span>
-                        </div>
-                        <div class="absolute inset-x-0 top-3/4 border-b border-dashed border-slate-800 pointer-events-none flex justify-between px-2">
-                            <span class="text-[10px] font-mono-cyber text-slate-500 -mt-2.5 bg-[#050811] px-1">3.70</span>
-                        </div>
-
-                        <!-- 4 Semester Bars -->
-                        @foreach ($academic_records['semesters'] as $sem)
-                            <div class="relative flex-1 max-w-[90px] h-full flex flex-col justify-end items-center group cyber-sfx-btn">
-                                <!-- Tooltip / Value on top of bar -->
-                                <div class="mb-2 px-2 py-0.5 rounded bg-black/90 border border-cyan-400 text-cyan-300 font-mono-cyber text-xs sm:text-sm font-bold shadow-lg shadow-cyan-950/60 group-hover:scale-110 group-hover:border-white transition-all">
-                                    {{ $sem['nilai'] }}
-                                </div>
-
-                                <!-- The Bar Column -->
-                                <div class="w-full rounded-t bg-gradient-to-t {{ $sem['accent'] }} relative overflow-hidden transition-all duration-300 group-hover:brightness-125 shadow-md shadow-cyan-500/20" style="height: {{ $sem['percentage'] }}%;">
-                                    <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    <!-- Scanline glitch effect on bar -->
-                                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent glitch-bar pointer-events-none"></div>
-                                </div>
-
-                                <!-- Bottom Label -->
-                                <div class="mt-3 text-center">
-                                    <div class="font-orbitron font-bold text-white text-xs sm:text-sm group-hover:text-cyan-300 transition-colors">
-                                        {{ $sem['short'] }}
-                                    </div>
-                                    <div class="text-[10px] font-mono-cyber text-slate-400 hidden sm:block">
-                                        {{ $sem['status'] }}
-                                    </div>
-                                </div>
+                    <!-- Backend -->
+                    <div class="group p-5 rounded-lg border border-slate-800 bg-[#060912] hover:border-cyan-500/50 transition-all duration-300 cyber-cut">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/20 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </div>
-                        @endforeach
+                            <div>
+                                <div class="font-bold font-rajdhani text-white text-base group-hover:text-cyan-300 transition-colors">Backend</div>
+                                <div class="text-[10px] font-mono-cyber text-slate-500">Logika bisnis, API, dan database.</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach (['Laravel', 'PHP', 'MySQL', 'REST API', 'Laravel Sanctum'] as $tech)
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-700 text-[11px] font-mono-cyber text-slate-200 hover:border-cyan-500/60 hover:text-cyan-300 transition-colors cursor-default">
+                                    {{ $tech }}
+                                </span>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
 
-                <!-- Academic Highlights Summary Cards -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-xs font-mono-cyber">
-                    <div class="p-3.5 rounded bg-[#060912] border border-slate-800">
-                        <div class="text-[10px] text-slate-400 uppercase">IPK Kumulatif</div>
-                        <div class="text-lg font-bold font-orbitron text-cyan-400">3.96 / 4.00</div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">Skala Standar 4.00</div>
+                    <!-- Mobile -->
+                    <div class="group p-5 rounded-lg border border-slate-800 bg-[#060912] hover:border-fuchsia-500/50 transition-all duration-300 cyber-cut">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded bg-fuchsia-500/10 border border-fuchsia-500/40 flex items-center justify-center text-fuchsia-400 group-hover:bg-fuchsia-500/20 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-bold font-rajdhani text-white text-base group-hover:text-fuchsia-300 transition-colors">Mobile</div>
+                                <div class="text-[10px] font-mono-cyber text-slate-500">Aplikasi lintas platform.</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach (['Flutter', 'Dart', 'Provider'] as $tech)
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-700 text-[11px] font-mono-cyber text-slate-200 hover:border-fuchsia-500/60 hover:text-fuchsia-300 transition-colors cursor-default">
+                                    {{ $tech }}
+                                </span>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="p-3.5 rounded bg-[#060912] border border-slate-800">
-                        <div class="text-[10px] text-slate-400 uppercase">Nilai Sempurna (4.00)</div>
-                        <div class="text-lg font-bold font-orbitron text-yellow-400">3 Semester</div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">Sem 1, Sem 3, Sem 4</div>
+
+                    <!-- Frontend -->
+                    <div class="group p-5 rounded-lg border border-slate-800 bg-[#060912] hover:border-yellow-500/50 transition-all duration-300 cyber-cut">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded bg-yellow-500/10 border border-yellow-500/40 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-500/20 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-bold font-rajdhani text-white text-base group-hover:text-yellow-300 transition-colors">Frontend</div>
+                                <div class="text-[10px] font-mono-cyber text-slate-500">Antarmuka web yang responsif.</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach (['Blade', 'Vite', 'JavaScript', 'HTML & CSS', 'Tailwind CSS', 'Alpine.js'] as $tech)
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-700 text-[11px] font-mono-cyber text-slate-200 hover:border-yellow-500/60 hover:text-yellow-300 transition-colors cursor-default">
+                                    {{ $tech }}
+                                </span>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="p-3.5 rounded bg-[#060912] border border-slate-800">
-                        <div class="text-[10px] text-slate-400 uppercase">Status Akademik</div>
-                        <div class="text-lg font-bold font-orbitron text-emerald-400">Mahasiswa Aktif</div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">Sistem Informasi UBSI</div>
+
+                    <!-- Tools -->
+                    <div class="group p-5 rounded-lg border border-slate-800 bg-[#060912] hover:border-emerald-500/50 transition-all duration-300 cyber-cut">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/20 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-bold font-rajdhani text-white text-base group-hover:text-emerald-300 transition-colors">Tools</div>
+                                <div class="text-[10px] font-mono-cyber text-slate-500">Alur kerja dan deployment.</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach (['Git', 'GitHub', 'Figma', 'VS Code', 'Laragon', 'Postman'] as $tech)
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-700 text-[11px] font-mono-cyber text-slate-200 hover:border-emerald-500/60 hover:text-emerald-300 transition-colors cursor-default">
+                                    {{ $tech }}
+                                </span>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="p-3.5 rounded bg-[#060912] border border-slate-800">
-                        <div class="text-[10px] text-slate-400 uppercase">Status Semester</div>
-                        <div class="text-lg font-bold font-orbitron text-white">4 Selesai</div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">UBSI Tasikmalaya</div>
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -946,6 +969,10 @@
             <span id="cyber-toast-text">Pesan sistem</span>
         </div>
     </div>
+
+    <!-- Custom Cyber Cursor -->
+    <div id="cyber-cursor-dot" class="fixed top-0 left-0 w-2 h-2 rounded-full bg-cyan-400 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 mix-blend-difference"></div>
+    <div id="cyber-cursor-ring" class="fixed top-0 left-0 w-8 h-8 rounded-full border border-cyan-400/60 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out"></div>
 
 </body>
 </html>

@@ -357,3 +357,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+// ============================================================
+// Cyber Custom Cursor
+// ============================================================
+(function initCyberCursor() {
+    const dot  = document.getElementById('cyber-cursor-dot');
+    const ring = document.getElementById('cyber-cursor-ring');
+
+    if (!dot || !ring) return;
+
+    // Skip on touch-only devices
+    if (window.matchMedia('(hover: none)').matches) {
+        dot.style.display = 'none';
+        ring.style.display = 'none';
+        document.body.style.cursor = 'auto';
+        return;
+    }
+
+    let mouseX = -100, mouseY = -100;
+    let ringX  = -100, ringY  = -100;
+    let rafId;
+
+    // Update dot position instantly
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+    });
+
+    // Smooth ring follows with lerp
+    function animateRing() {
+        ringX += (mouseX - ringX) * 0.14;
+        ringY += (mouseY - ringY) * 0.14;
+        ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+        rafId = requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Hover effect on interactive elements
+    const hoverSelectors = 'a, button, [role="button"], input, textarea, select, label, .cyber-sfx-btn';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(hoverSelectors)) {
+            document.body.classList.add('cursor-hover');
+        }
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(hoverSelectors)) {
+            document.body.classList.remove('cursor-hover');
+        }
+    });
+
+    // Click burst effect
+    document.addEventListener('mousedown', () => {
+        document.body.classList.add('cursor-click');
+    });
+    document.addEventListener('mouseup', () => {
+        document.body.classList.remove('cursor-click');
+    });
+
+    // Hide when cursor leaves window
+    document.addEventListener('mouseleave', () => {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+    });
+})();

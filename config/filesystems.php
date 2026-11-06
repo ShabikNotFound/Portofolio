@@ -1,5 +1,7 @@
 <?php
 
+$storageRoot = env('VERCEL') ? '/tmp/storage' : storage_path();
+
 return [
 
     /*
@@ -32,7 +34,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
+            'root' => $storageRoot.'/app/private',
             'serve' => true,
             'throw' => false,
             'report' => false,
@@ -40,7 +42,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => $storageRoot.'/app/public',
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
             'visibility' => 'public',
             'throw' => false,
@@ -74,7 +76,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('storage') => $storageRoot.'/app/public',
     ],
 
 ];

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+$sessionFilesPath = env('VERCEL') ? '/tmp/storage/framework/sessions' : storage_path('framework/sessions');
+
 return [
 
     /*
@@ -60,7 +62,7 @@ return [
     |
     */
 
-    'files' => storage_path('framework/sessions'),
+    'files' => $sessionFilesPath,
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +171,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE', env('VERCEL') ? true : false),
 
     /*
     |--------------------------------------------------------------------------
