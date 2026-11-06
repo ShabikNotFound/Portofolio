@@ -1,6 +1,6 @@
 <?php
 
-$storageRoot = env('VERCEL') ? '/tmp/storage' : storage_path();
+$storageRoot = env('APP_STORAGE_ROOT', env('VERCEL') ? '/tmp/storage' : storage_path());
 
 return [
 

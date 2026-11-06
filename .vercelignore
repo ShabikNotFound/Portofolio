@@ -1,0 +1,28 @@
+# Vercel ignore — exclude heavy/unnecessary files from deployment bundle
+
+# Dev dependencies
+node_modules/
+
+# Tests & dev tooling
+tests/
+phpunit.xml
+.phpunit.result.cache
+.phpunit.cache/
+
+# Local env
+.env
+.env.backup
+.env.production
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
+.nova/
+.zed/
+Thumbs.db
+
+# Unused Laravel dev dirs
+storage/pail/
+storage/*.key
+

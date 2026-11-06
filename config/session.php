@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Str;
 
-$sessionFilesPath = env('VERCEL') ? '/tmp/storage/framework/sessions' : storage_path('framework/sessions');
+$storageRoot = env('APP_STORAGE_ROOT', env('VERCEL') ? '/tmp/storage' : storage_path());
+$sessionFilesPath = $storageRoot.'/framework/sessions';
 
 return [
 
