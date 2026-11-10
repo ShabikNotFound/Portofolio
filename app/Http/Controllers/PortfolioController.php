@@ -21,6 +21,8 @@ class PortfolioController extends Controller
         $birthDate = Carbon::create(2005, 10, 1);
         $age = $birthDate->age;
 
+        $waMessage = "Halo, Shabik!\n\nSaya sudah melihat portofolio Anda dan tertarik dengan kemampuan serta proyek yang telah Anda kerjakan.\n\nSaya ingin bertanya lebih lanjut mengenai layanan yang Anda tawarkan. Apakah saat ini Anda terbuka untuk menerima proyek atau kerja sama?\n\nJika berkenan, saya ingin berdiskusi lebih lanjut mengenai kebutuhan proyek saya.\n\nTerima kasih!";
+
         return [
             'personal' => [
                 'name' => 'Shabik Sholahudin',
@@ -37,7 +39,7 @@ class PortfolioController extends Controller
                 'status' => 'Mahasiswa UBSI Kota Tasikmalaya',
                 'phone' => '081563346921',
                 'phone_display' => '+62 815-6334-6921',
-                'whatsapp_url' => 'https://wa.me/6281563346921?text=Halo%20Shabik%20Sholahudin,%20saya%20melihat%20portofolio%20cyberpunk%20Anda.',
+                'whatsapp_url' => 'https://wa.me/6281563346921?text='.rawurlencode($waMessage),
                 'email' => 'shabiksholahudin@gmail.com',
                 'avatar' => asset('images/avatar.jpg'),
                 'status_indicator' => 'Mahasiswa UBSI Kota Tasikmalaya',
